@@ -72,11 +72,20 @@ class Check1C(StartWebDriverBase):
         :param location: город для поиска
         :return:
         """
-        location_tag = self.driver.find_element(By.CSS_SELECTOR, 'a.opener span.city_name')
+
+        location_tag = self.driver.find_element(By.XPATH, "//div/section/section//a/span[@class='city_name']")
         location_tag.click()
+        input_location_field = self.driver.find_element(By.ID, 'city_choose')
+        self.send_text_like_human(input_location_field, location)
+        input_location_field.send_keys(Keys.ENTER)
+        btn = self.driver.find_element(By.XPATH, '//fieldset/input[@class="btn-orange"]')
+        print(btn.is_enabled())
+
+        btn.click()
 
 
 mvideo = Check1C()
+sleep(10)
 mvideo.set_locations('Томск')
 
 sleep(3)
