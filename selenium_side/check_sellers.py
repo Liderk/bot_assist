@@ -4,8 +4,10 @@
 from time import sleep
 
 from loguru import logger
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC  # noqa
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 
@@ -83,9 +85,23 @@ class Check1C(StartWebDriverBase):
 
         btn.click()
 
+    def get_xbox_status(self):
+        """
+        Проверка статуса xbox
+        """
+
+        catalog = self.driver.find_element(By.PARTIAL_LINK_TEXT, 'Каталог товаров')
+        catalog.click()
+        games_and_consoles = self.driver.find_element(By.PARTIAL_LINK_TEXT, 'Игры и консоли')
+        ActionChains(self.driver).move_to_element(games_and_consoles).perform()
+        self.driver.find_element(By.PARTIAL_LINK_TEXT, 'Xbox Series X / S').click()
+
+
 
 mvideo = Check1C()
 sleep(10)
 mvideo.set_locations('Томск')
+sleep(1)
+mvideo.get_xbox_status()
 
 sleep(3)
