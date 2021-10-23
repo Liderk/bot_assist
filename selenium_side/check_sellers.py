@@ -95,9 +95,11 @@ class Check1C(StartWebDriverBase):
         games_and_consoles = self.driver.find_element(By.PARTIAL_LINK_TEXT, 'Игры и консоли')
         ActionChains(self.driver).move_to_element(games_and_consoles).perform()
         self.driver.find_element(By.PARTIAL_LINK_TEXT, 'Xbox Series X / S').click()
+        status = self.driver.find_element(By.XPATH, '//h1[@class="H1_DESKTOP small-screen-hide"]')
+        logger.info(status.text)
 
 
-
+div/div/
 mvideo = Check1C()
 sleep(10)
 mvideo.set_locations('Томск')
