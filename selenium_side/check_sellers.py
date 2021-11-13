@@ -99,7 +99,17 @@ class Check1C(StartWebDriverBase):
         logger.info(status.text)
 
 
-div/div/
+class CheckDNS(StartWebDriverBase):
+    """Проверка сайта DNS на наличие консоли """
+    MAIN_URL = 'https://www.dns-shop.ru/'
+
+    def __init__(self):
+        self.url = self.MAIN_URL
+        super().__init__(self.url)
+
+
+    def set_location(self):
+
 mvideo = Check1C()
 sleep(10)
 mvideo.set_locations('Томск')
